@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GiftKind - Payment Successful</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="bg-gradient"></div>
+    <main class="shell">
+      <section class="panel">
+        <h1>Thanks! Unlocking your premium results…</h1>
+        <p class="small">If this page doesn’t redirect in a few seconds, you can go back to the homepage.</p>
+      </section>
+    </main>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get("session_id");
+
+      async function verify() {
+        if (!sessionId) {
+          window.location.href = "/";
+          return;
+        }
+        try {
+          const response = await fetch(`/api/verify-session?session_id=${encodeURIComponent(sessionId)}`);
+          const data = await response.json();
+          if (data && data.paid) {
+            localStorage.setItem("mdgf_unlocked", "true");
+            window.location.href = "/?unlocked=1";
+            return;
+          }
+        } catch (error) {
+          // Ignore and fall through to redirect.
+        }
+        window.location.href = "/?unlock_failed=1";
+      }
+
+      verify();
+    </script>
+  </body>
+</html>
