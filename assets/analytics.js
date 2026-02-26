@@ -4,6 +4,13 @@
     return;
   }
 
+  if (typeof window.gtag === "function") {
+    window.trackEvent = (name, params = {}) => {
+      window.gtag("event", name, params);
+    };
+    return;
+  }
+
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     window.dataLayer.push(arguments);
