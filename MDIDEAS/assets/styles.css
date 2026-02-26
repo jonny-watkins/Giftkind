@@ -43,6 +43,41 @@ body {
   padding: 24px 0 8px;
 }
 
+.page-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.switch-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.switch-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--primary-dark);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.switch-link:hover {
+  border-color: var(--primary);
+}
+
+.switch-link.active {
+  background: rgba(182, 66, 111, 0.14);
+  border-color: rgba(182, 66, 111, 0.4);
+  font-weight: 600;
+}
+
 .badge {
   display: inline-flex;
   padding: 6px 14px;
@@ -71,6 +106,51 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.occasion-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 16px;
+}
+
+.occasion-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  background: #fff;
+  display: grid;
+  gap: 10px;
+  box-shadow: 0 14px 30px rgba(36, 23, 38, 0.08);
+}
+
+.occasion-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-family: "Fraunces", serif;
+}
+
+.occasion-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.occasion-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.occasion-cta:hover {
+  background: var(--primary-dark);
 }
 
 .panel {
