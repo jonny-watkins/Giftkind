@@ -369,7 +369,7 @@ function buildResultCard(gift, delay, locked) {
   const linksBlock = links.length
     ? `
       <div class="buy">
-        <div class="buy-title">Where to buy <span class="buy-disclosure">(paid links)</span></div>
+        <div class="buy-title">Where to buy</div>
         <div class="buy-note">View options on Amazon.</div>
         <div class="buy-links">${linkHtml}</div>
       </div>
@@ -492,7 +492,7 @@ function generate(source = "auto") {
     .sort((a, b) => b.score - a.score);
 
   const results = $("results");
-  results.innerHTML = "";
+  results.innerHTML = `<p class="small results-disclosure">Some links are affiliate links. As an Amazon Associate I earn from qualifying purchases.</p>`;
 
   if (!scored.length) {
     if (source === "submit") {
