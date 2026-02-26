@@ -1,79 +1,68 @@
-﻿const INTERESTS = [
-  { key: "selfcare", label: "Self-care" },
-  { key: "home", label: "Home" },
-  { key: "coffee", label: "Coffee/Tea" },
+const INTERESTS = [
+  { key: "essentials", label: "Essentials" },
+  { key: "sleep", label: "Sleep" },
+  { key: "feeding", label: "Feeding" },
+  { key: "bath", label: "Bath time" },
+  { key: "nursery", label: "Nursery" },
+  { key: "travel", label: "On-the-go" },
   { key: "books", label: "Books" },
-  { key: "fitness", label: "Fitness" },
-  { key: "cooking", label: "Cooking" },
-  { key: "garden", label: "Garden" },
-  { key: "tech", label: "Tech" },
-  { key: "craft", label: "Craft" },
-  { key: "experiences", label: "Experiences" }
+  { key: "selfcare", label: "Parent self-care" },
+  { key: "eco", label: "Eco/organic" },
+  { key: "tech", label: "Tech" }
 ];
 
 const RECIPIENTS = [
-  { key: "mum", label: "Mum" },
-  { key: "newmum", label: "New mum" },
-  { key: "grandma", label: "Grandma" },
-  { key: "mil", label: "Mother-in-law" }
+  { key: "parents", label: "Parents-to-be" },
+  { key: "mum", label: "New mum" },
+  { key: "dad", label: "New dad" },
+  { key: "both", label: "Both parents" }
 ];
 
 const TYPES = [
-  { key: "care", label: "Caring and sentimental" },
-  { key: "practical", label: "Practical and organised" },
-  { key: "style", label: "Style and self-care" },
-  { key: "food", label: "Foodie or cook" },
-  { key: "garden", label: "Garden or outdoors" },
-  { key: "bookish", label: "Bookish or cosy" },
-  { key: "tech", label: "Tech-friendly" }
+  { key: "practical", label: "Practical essentials" },
+  { key: "sentimental", label: "Sentimental keepsake" },
+  { key: "selfcare", label: "Parent self-care" },
+  { key: "eco", label: "Eco or organic" },
+  { key: "tech", label: "Tech-friendly" },
+  { key: "budget", label: "Budget-friendly" }
 ];
 
 const GIFTS = [
-  { name: "Personalised photo keyring", price: 12, tags: ["care", "high", "home", "mum", "grandma", "mil"], why: "A small keepsake she can carry every day." },
-  { name: "Luxury hand cream", price: 10, tags: ["style", "selfcare", "med", "mum", "mil"], why: "Feels premium without being expensive." },
-  { name: "Tea sampler box", price: 14, tags: ["food", "coffee", "med", "mum", "grandma", "mil"], why: "A simple treat that still feels thoughtful." },
-  { name: "Paperback bestseller and bookmark", price: 12, tags: ["bookish", "books", "med", "mum", "grandma"], why: "Cosy and easy to enjoy right away." },
-  { name: "Mini herb seed tins", price: 9, tags: ["garden", "garden", "med", "mum", "grandma"], why: "Sweet and practical for green thumbs." },
-  { name: "New mum first-year journal", price: 14, tags: ["care", "high", "craft", "newmum"], why: "Captures the tiny moments she will want to keep." },
-  { name: "Socks and foot balm set", price: 15, tags: ["style", "selfcare", "med", "mum"], why: "A little comfort that feels indulgent." },
-  { name: "Mini photo print set", price: 15, tags: ["care", "high", "home", "mum", "grandma"], why: "Turns recent memories into something tangible." },
-  { name: "Personalised name print", price: 20, tags: ["care", "high", "home", "mum", "grandma", "mil"], why: "Meaningful wall art she can keep." },
-  { name: "Scented candle (quality brand)", price: 22, tags: ["bookish", "home", "med", "mum", "mil"], why: "Instant relax vibes for her space." },
-  { name: "Gardening gloves and seed set", price: 18, tags: ["garden", "garden", "med", "mum", "grandma"], why: "Practical, and it shows you noticed her hobby." },
-  { name: "Insulated coffee or tea tumbler", price: 18, tags: ["practical", "coffee", "med", "mum"], why: "Useful every day for the school run or commute." },
-  { name: "Recipe journal or meal planner", price: 16, tags: ["practical", "cooking", "med", "mum"], why: "Great for organised mums or keen cooks." },
-  { name: "New mum self-care mini kit", price: 24, tags: ["style", "selfcare", "med", "newmum"], why: "A gentle reminder to take a breather." },
-  { name: "Grandma story journal", price: 20, tags: ["care", "high", "books", "grandma"], why: "A keepsake that captures her stories." },
-  { name: "Mother-in-law thank-you gift box", price: 25, tags: ["care", "high", "home", "mil"], why: "Warm and thoughtful without trying too hard." },
-  { name: "Cosy throw blanket", price: 24, tags: ["bookish", "home", "med", "mum", "grandma"], why: "Perfect for reading, naps, and movie nights." },
-  { name: "At-home spa kit", price: 35, tags: ["style", "selfcare", "med", "mum"], why: "A treat-yourself bundle she will actually use." },
-  { name: "Afternoon tea experience voucher", price: 45, tags: ["care", "experiences", "high", "mum", "grandma", "mil"], why: "Feels special and creates a memory together." },
-  { name: "Heated neck and shoulder wrap", price: 40, tags: ["care", "selfcare", "practical", "mum", "grandma"], why: "Comfort gift that says you want her to relax." },
-  { name: "Fragrance discovery set", price: 45, tags: ["style", "selfcare", "med", "mil"], why: "Safer than guessing a full perfume bottle." },
-  { name: "Custom photo calendar", price: 30, tags: ["care", "high", "home", "mum", "grandma"], why: "A full year of memories she can see daily." },
-  { name: "Indoor herb garden kit", price: 42, tags: ["food", "garden", "cooking", "med", "mum"], why: "Fresh herbs without the outdoor hassle." },
-  { name: "Craft workshop voucher", price: 48, tags: ["craft", "experiences", "med", "mum", "mil"], why: "A creative day out she can enjoy." },
-  { name: "Nursing pillow and cover", price: 38, tags: ["practical", "newmum", "med"], why: "Makes feeding or resting a little easier." },
-  { name: "Jewellery with initials or birthstone", price: 85, tags: ["care", "high", "style", "mum", "grandma", "mil"], why: "A classic keepsake without being cheesy." },
-  { name: "High-end hair tool or styling kit", price: 90, tags: ["style", "tech", "med", "mum"], why: "A proper upgrade she might not buy herself." },
-  { name: "Smart photo frame", price: 95, tags: ["care", "tech", "high", "mum", "grandma"], why: "Load it with family photos for instant smiles." },
-  { name: "Weighted cosy blanket", price: 80, tags: ["bookish", "home", "selfcare", "med", "mum"], why: "Comforting and perfect for winding down." },
-  { name: "Premium cookbook and stand", price: 70, tags: ["food", "cooking", "med", "mum"], why: "A keepsake cookbook she will use again and again." },
-  { name: "Tablet stand and stylus set", price: 65, tags: ["practical", "tech", "med", "mil"], why: "Ideal for video calls, recipes, or planning." },
-  { name: "Family photo book", price: 75, tags: ["care", "high", "home", "grandma"], why: "A polished keepsake she can flip through anytime." }
+  { name: "Muslin swaddle set", price: 12, tags: ["practical", "essentials", "med", "parents", "both"], why: "Soft, breathable, and used daily." },
+  { name: "Baby socks gift set", price: 10, tags: ["budget", "essentials", "practical", "parents", "both"], why: "A simple add-on that always gets used." },
+  { name: "Board book bundle", price: 12, tags: ["sentimental", "books", "med", "parents", "both"], why: "Early story time favorites." },
+  { name: "Milestone cards", price: 14, tags: ["sentimental", "nursery", "high", "parents", "mum", "both"], why: "Great for capturing month-by-month moments." },
+  { name: "Baby bibs set", price: 9, tags: ["budget", "feeding", "practical", "parents", "both"], why: "Feeding time essential that saves outfits." },
+  { name: "Teething toy set", price: 15, tags: ["practical", "budget", "parents", "both", "eco"], why: "Helpful and easy to keep on hand." },
+  { name: "Nappy caddy organiser", price: 18, tags: ["practical", "essentials", "med", "parents", "both"], why: "Keeps diapers and wipes in one place." },
+  { name: "Hooded towel and washcloths", price: 20, tags: ["practical", "bath", "med", "parents", "both"], why: "Makes bath time cosy and easier." },
+  { name: "Baby bath essentials set", price: 22, tags: ["practical", "bath", "med", "parents", "both"], why: "All the basics in one easy bundle." },
+  { name: "Nursery night light", price: 24, tags: ["tech", "sleep", "med", "parents", "both"], why: "Gentle light for late-night feeds." },
+  { name: "Baby memory book", price: 20, tags: ["sentimental", "high", "nursery", "parents", "mum", "both"], why: "A keepsake parents will treasure." },
+  { name: "Organic cotton bodysuit set", price: 24, tags: ["eco", "essentials", "med", "parents", "both"], why: "Soft, gentle, and reliable." },
+  { name: "White noise machine", price: 35, tags: ["tech", "sleep", "practical", "parents", "both"], why: "Helps settle baby and improve sleep." },
+  { name: "Portable changing mat", price: 30, tags: ["practical", "travel", "med", "parents", "both"], why: "Perfect for days out and travel." },
+  { name: "Nursing pillow", price: 38, tags: ["practical", "feeding", "mum", "med"], why: "Support for feeding and cuddles." },
+  { name: "Audio baby monitor", price: 45, tags: ["tech", "sleep", "practical", "parents", "both"], why: "Reliable monitoring without the fuss." },
+  { name: "Baby bouncer chair", price: 45, tags: ["practical", "essentials", "med", "parents", "both"], why: "Gives parents a safe place to set baby down." },
+  { name: "Family handprint kit", price: 32, tags: ["sentimental", "high", "nursery", "parents", "both"], why: "A sweet keepsake for the nursery." },
+  { name: "Postpartum recovery kit", price: 35, tags: ["selfcare", "mum", "med"], why: "Thoughtful support for new mums." },
+  { name: "New dad coffee kit", price: 25, tags: ["selfcare", "dad", "med", "budget"], why: "A practical boost for early mornings." },
+  { name: "Ergonomic baby carrier", price: 90, tags: ["practical", "travel", "med", "parents", "both"], why: "Hands-free and comfortable for everyone." },
+  { name: "Premium diaper bag backpack", price: 85, tags: ["practical", "travel", "med", "parents", "both"], why: "Stylish, roomy, and built for daily use." },
+  { name: "Video baby monitor", price: 95, tags: ["tech", "sleep", "practical", "parents", "both"], why: "Extra peace of mind for parents." },
+  { name: "Personalised baby blanket", price: 60, tags: ["sentimental", "high", "nursery", "parents", "mum", "both"], why: "A keepsake that feels personal." },
+  { name: "Keepsake memory box", price: 55, tags: ["sentimental", "high", "nursery", "parents", "both"], why: "Store tiny mementos for years." },
+  { name: "Baby first year photo frame", price: 28, tags: ["sentimental", "high", "nursery", "parents", "both"], why: "Perfect for capturing the first year." }
 ];
 
 const ADDONS = [
-  { name: "Handwritten card and wax seal kit", price: 6, tags: ["high", "craft", "flowers"], why: "Adds a thoughtful finish to the bouquet." },
-  { name: "Luxury ribbon and wrap", price: 5, tags: ["home", "flowers"], why: "Makes the flowers feel extra special." },
-  { name: "Glass vase upgrade", price: 12, tags: ["home", "flowers"], why: "Makes arranging the bouquet effortless." },
-  { name: "Chocolate truffles", price: 10, tags: ["food", "flowers"], why: "A sweet add-on that feels indulgent." },
-  { name: "Breakfast-in-bed kit", price: 18, tags: ["food", "coffee", "flowers"], why: "Pairs perfectly with a lazy morning." },
-  { name: "Photo magnet set", price: 14, tags: ["care", "high", "home", "flowers"], why: "Turns memories into small daily smiles." },
-  { name: "Mini candle duo", price: 16, tags: ["selfcare", "home", "med", "flowers"], why: "Soft glow and scent to go with the blooms." },
-  { name: "Flower care kit", price: 8, tags: ["practical", "flowers"], why: "Helps the bouquet last longer." },
-  { name: "Printed playlist QR card", price: 6, tags: ["tech", "high", "flowers"], why: "A tiny keepsake that feels modern." },
-  { name: "Herbal tea sachets", price: 9, tags: ["coffee", "med", "flowers"], why: "A calming sip to enjoy with the flowers." }
+  { name: "Mini board book", price: 6, tags: ["sentimental", "books", "parents", "both"], why: "A sweet extra for bedtime routines." },
+  { name: "Muslin burp cloths", price: 8, tags: ["practical", "essentials", "parents", "both"], why: "Always handy and easy to wash." },
+  { name: "Pacifier set", price: 7, tags: ["practical", "essentials", "parents", "both"], why: "A small add-on that parents appreciate." },
+  { name: "Baby socks add-on", price: 6, tags: ["budget", "essentials", "parents", "both"], why: "Tiny, useful, and easy to gift." },
+  { name: "Travel wipes case", price: 9, tags: ["practical", "travel", "parents", "both"], why: "Keeps wipes ready for trips." },
+  { name: "Keepsake card set", price: 5, tags: ["sentimental", "high", "parents", "both"], why: "A simple way to add meaning." }
 ];
 
 const CURRENCY = "£";
@@ -90,10 +79,14 @@ const TAG_LABELS = {
   high: "keepsake",
   med: "thoughtful",
   practical: "practical",
+  sentimental: "keepsake",
   selfcare: "self-care",
-  newmum: "new mum",
-  grandma: "grandma",
-  mil: "mother-in-law"
+  eco: "eco",
+  budget: "budget",
+  parents: "parents-to-be",
+  mum: "new mum",
+  dad: "new dad",
+  both: "both parents"
 };
 
 const $ = (id) => document.getElementById(id);
@@ -280,7 +273,7 @@ function buildSearchTerms(gift) {
   const terms = [
     base,
     `${base} gift`,
-    `${base} for mum`,
+    `${base} for baby`,
     `best ${base}`,
     `${base} set`,
     `luxury ${base}`,
@@ -345,7 +338,7 @@ function buildSummary(options, total) {
     : "None";
   card.innerHTML = `
     <strong>Top picks</strong>
-    <div class="small">Budget: up to ${CURRENCY}${options.budget} | Recipient: ${labelFor(RECIPIENTS, options.recipient)} | Mum type: ${labelFor(TYPES, options.mumType)} | Sentiment: ${sentimentLabel(options.sentiment)} | Interests: ${interestLabels}</div>
+    <div class="small">Budget: up to ${CURRENCY}${options.budget} | Recipient: ${labelFor(RECIPIENTS, options.recipient)} | Gift style: ${labelFor(TYPES, options.mumType)} | Sentiment: ${sentimentLabel(options.sentiment)} | Interests: ${interestLabels}</div>
     <div class="small">${total} matches found.</div>
   `;
   return card;
@@ -356,7 +349,27 @@ function buildResultCard(gift, delay, locked) {
   card.className = `result${locked ? " locked" : ""}`;
   card.style.animationDelay = `${delay}ms`;
   const tags = gift.tags
-    .filter((tag) => ["high", "med", "practical", "selfcare", "coffee", "books", "cooking", "garden", "tech", "craft", "experiences", "newmum", "grandma", "mil"].includes(tag))
+    .filter((tag) => [
+      "high",
+      "med",
+      "practical",
+      "sentimental",
+      "selfcare",
+      "eco",
+      "budget",
+      "essentials",
+      "sleep",
+      "feeding",
+      "bath",
+      "nursery",
+      "travel",
+      "books",
+      "tech",
+      "parents",
+      "mum",
+      "dad",
+      "both"
+    ].includes(tag))
     .slice(0, 3)
     .map((tag) => `<span class="pill">${prettyTag(tag)}</span>`)
     .join("");
@@ -431,8 +444,8 @@ function buildAddons(options) {
   wrap.className = "panel addons";
   wrap.innerHTML = `
     <div class="summary">
-      <strong>Already bought flowers? Pair them with one of these</strong>
-      <div class="small">Small add-ons that make a bouquet feel extra thoughtful.</div>
+      <strong>Already bought a big gift? Add one of these</strong>
+      <div class="small">Small add-ons that make a baby shower gift feel extra thoughtful.</div>
     </div>
   `;
 
@@ -493,10 +506,10 @@ function generate(source = "auto") {
       trackEvent("finder_submit", {
         budget: options.budget,
         recipient: options.recipient,
-        mum_type: options.mumType,
+        gift_style: options.mumType,
         sentiment: options.sentiment,
         interests_count: options.interests.length,
-        already_flowers: options.alreadyFlowers ? "yes" : "no"
+        already_big_gift: options.alreadyFlowers ? "yes" : "no"
       });
       trackEvent("results_shown", { total_matches: 0, unlocked: isUnlocked() ? "yes" : "no" });
     }
@@ -513,10 +526,10 @@ function generate(source = "auto") {
     trackEvent("finder_submit", {
       budget: options.budget,
       recipient: options.recipient,
-      mum_type: options.mumType,
+      gift_style: options.mumType,
       sentiment: options.sentiment,
       interests_count: options.interests.length,
-      already_flowers: options.alreadyFlowers ? "yes" : "no"
+      already_big_gift: options.alreadyFlowers ? "yes" : "no"
     });
     trackEvent("results_shown", { total_matches: scored.length, unlocked: unlocked ? "yes" : "no" });
   }
@@ -555,8 +568,8 @@ function scrollResultsIntoViewIfMobile() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  fillSelect("recipient", RECIPIENTS, "mum");
-  fillSelect("mumType", TYPES, "care");
+  fillSelect("recipient", RECIPIENTS, "parents");
+  fillSelect("mumType", TYPES, "practical");
   renderInterests();
   trackUnlockFromQuery();
   const results = $("results");
@@ -579,6 +592,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   generate("auto");
 });
-
-
-

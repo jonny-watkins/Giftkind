@@ -43,6 +43,41 @@ body {
   padding: 24px 0 8px;
 }
 
+.page-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.switch-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.switch-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--primary-dark);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.switch-link:hover {
+  border-color: var(--primary);
+}
+
+.switch-link.active {
+  background: rgba(182, 66, 111, 0.14);
+  border-color: rgba(182, 66, 111, 0.4);
+  font-weight: 600;
+}
+
 .badge {
   display: inline-flex;
   padding: 6px 14px;
