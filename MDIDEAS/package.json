@@ -1,0 +1,8 @@
+{
+  "name": "giftkind",
+  "private": true,
+  "description": "GiftKind static site with Netlify Functions for Stripe Checkout.",
+  "dependencies": {
+    "stripe": "^14.25.0"
+  }
+}
