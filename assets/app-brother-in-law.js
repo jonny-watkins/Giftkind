@@ -468,9 +468,6 @@ function sentimentLabel(value) {
 }
 
 function scrollResultsIntoViewIfMobile() {
-  if (!window.matchMedia || !window.matchMedia("(max-width: 640px)").matches) {
-    return;
-  }
   const results = $("results");
   if (!results) return;
   window.requestAnimationFrame(() => {
