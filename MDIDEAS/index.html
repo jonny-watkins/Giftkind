@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GiftKind - Mother's Day Gift Finder</title>
+    <title>GiftKind - Gift Finder for Every Occasion</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,119 +17,66 @@
     <main class="shell">
       <header class="hero">
         <div class="page-switch">
-          <span class="switch-label">Choose:</span>
-          <a class="switch-link active" href="index.html">Mother’s Day</a>
+          <span class="switch-label">Occasion:</span>
+          <a class="switch-link active" href="index.html">Home</a>
+          <a class="switch-link" href="mothers-day.html">Mother's Day</a>
           <a class="switch-link" href="baby-shower.html">Baby shower</a>
         </div>
         <span class="badge">GiftKind</span>
-        <h1>Find the perfect Mother’s Day gift in 30 seconds.</h1>
+        <h1>Gift recommendations that feel personal.</h1>
         <p class="lede">
-          Answer a few quick questions and get gift ideas that feel personal, based on budget and
-          personality.
+          GiftKind helps you pick thoughtful gifts fast. Choose an occasion, answer a few quick
+          questions, and get curated ideas that match budget and style.
         </p>
         <div class="hero-meta">
           <span class="pill">Fast</span>
           <span class="pill">Thoughtful</span>
-          <span class="pill">Static-site friendly</span>
           <span class="pill">No signup</span>
         </div>
       </header>
 
       <section class="panel">
-        <form id="finderForm">
-          <div class="grid">
-            <div class="field">
-              <label for="budget">Budget</label>
-              <select id="budget">
-                <option value="15">Up to &pound;15</option>
-                <option value="25" selected>Up to &pound;25</option>
-                <option value="50">Up to &pound;50</option>
-                <option value="100">Up to &pound;100</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="recipient">Recipient</label>
-              <select id="recipient"></select>
-            </div>
-            <div class="field">
-              <label for="mumType">Mum type</label>
-              <select id="mumType"></select>
-            </div>
-            <div class="field">
-              <label for="sentiment">Sentiment level</label>
-              <select id="sentiment">
-                <option value="low">Low (useful gifts)</option>
-                <option value="med" selected>Medium (thoughtful + useful)</option>
-                <option value="high">High (personal / keepsake)</option>
-              </select>
-            </div>
+        <h2>Choose an occasion</h2>
+        <p class="lede">Start with the occasion below. More categories are coming soon.</p>
+        <div class="occasion-grid">
+          <div class="occasion-card">
+            <h3>Mother's Day</h3>
+            <p>Find gifts for mum, grandma, or mother-in-law in under a minute.</p>
+            <a class="occasion-cta" href="mothers-day.html">Start Mother's Day</a>
           </div>
-
-          <div class="field">
-            <label>Interests (pick any)</label>
-            <div class="checks" id="interestChecks"></div>
+          <div class="occasion-card">
+            <h3>Baby shower</h3>
+            <p>Practical, keepsake, and registry-friendly picks for new parents.</p>
+            <a class="occasion-cta" href="baby-shower.html">Start Baby Shower</a>
           </div>
-
-          <div class="grid">
-            <div class="field">
-              <label for="avoid">Anything to avoid? (optional)</label>
-              <input id="avoid" type="text" placeholder="e.g. perfume, clutter, chocolates, mugs" />
-            </div>
-            <div class="field">
-              <label class="toggle">
-                <input id="flowers" type="checkbox" />
-                <span>Already bought flowers</span>
-              </label>
-              <p class="help">We will suggest add-ons that pair well with flowers.</p>
-            </div>
-          </div>
-
-          <button class="primary" type="submit">Find gift ideas</button>
-          <p class="small">Tip: You can expand or edit the gift list any time.</p>
-        </form>
+        </div>
       </section>
 
       <section class="panel tips">
-        <h2>Quick gift tips</h2>
-        <p>Upgrade something she already uses (tea, skincare, or a favorite routine).</p>
-        <p>Add one personal detail like a name, date, or shared memory.</p>
-        <p>Experiences can feel more meaningful than more stuff.</p>
-      </section>
-
-      <section class="panel criteria">
-        <h2>How we choose ideas</h2>
-        <ul>
-          <li>Fit first: ideas are scored by recipient type, sentiment, and interests.</li>
-          <li>Practicality: we favor gifts that are easy to enjoy and easy to buy.</li>
-          <li>Range: every budget tier includes at least a few standout options.</li>
-        </ul>
+        <h2>How it works</h2>
+        <p>Pick the occasion and set a budget.</p>
+        <p>Answer a few quick questions about style and interests.</p>
+        <p>Get a shortlist of ideas with links to buy.</p>
       </section>
 
       <section class="panel disclosure">
         <h2>About GiftKind</h2>
         <p>
-          GiftKind helps you find thoughtful gift ideas fast&mdash;based on budget and personality.
-          It matches preferences to curated ideas so you can pick with confidence.
-        </p>
-        <p>
-          We score ideas by recipient type, sentiment level, and interests to surface the best fits
-          first.
+          GiftKind is a simple gift finder for different occasions. It matches preferences to
+          curated ideas so you can pick with confidence.
         </p>
         <p class="disclosure-line">
           <strong>Disclosure:</strong> This site may earn a commission from purchases made through links.
           As an Amazon Associate I earn from qualifying purchases.
         </p>
         <p class="privacy-line">
-          Privacy: Your answers stay in your browser. We don't ask for logins and we don't store your
+          Privacy: Your answers stay in your browser. We do not ask for logins and we do not store your
           inputs on our servers.
         </p>
         <p class="privacy-line">
           Prices and availability can change; always verify details before you buy.
         </p>
       </section>
-
-      <p class="small results-note">We only suggest well-reviewed items with fast UK delivery.</p>
-      <section id="results"></section>
 
       <section class="panel contact">
         <h2>Contact</h2>
@@ -163,15 +110,9 @@
       </footer>
     </main>
 
-    <noscript>
-      <div class="noscript">This page needs JavaScript to generate recommendations.</div>
-    </noscript>
-
     <script>
       window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
     </script>
     <script src="assets/analytics.js"></script>
-    <script src="assets/amazon-links.js"></script>
-    <script src="assets/app.js" defer></script>
   </body>
 </html>

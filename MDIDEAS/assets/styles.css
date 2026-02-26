@@ -108,6 +108,51 @@ body {
   gap: 10px;
 }
 
+.occasion-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 16px;
+}
+
+.occasion-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  background: #fff;
+  display: grid;
+  gap: 10px;
+  box-shadow: 0 14px 30px rgba(36, 23, 38, 0.08);
+}
+
+.occasion-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-family: "Fraunces", serif;
+}
+
+.occasion-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.occasion-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.occasion-cta:hover {
+  background: var(--primary-dark);
+}
+
 .panel {
   background: var(--card);
   border: 1px solid var(--line);
