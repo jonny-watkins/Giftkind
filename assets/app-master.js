@@ -33,7 +33,7 @@ const CURRENCY = "£";
 const AMAZON_BASE = "https://www.amazon.co.uk/s?k=";
 const AMAZON_TAG = "giftkind-21";
 const AMAZON_MAX_LINKS = 7;
-const AMAZON_EXACT_LINKS_ONLY = true;
+const AMAZON_EXACT_LINKS_ONLY = false;
 const AMAZON_LINKS = typeof window !== "undefined" && window.AMAZON_LINKS ? window.AMAZON_LINKS : {};
 const UNLOCK_KEY = "mdgf_unlocked";
 const MAX_RESULTS = 8;
@@ -95,6 +95,17 @@ const CATEGORY_GROUPS = [
     items: ["minimalist-gifts", "experience-gifts"]
   }
 ];
+
+const CATEGORY_GROUP_MAP = CATEGORY_GROUPS.reduce((acc, group) => {
+  group.items.forEach((id) => {
+    acc[id] = group.title;
+  });
+  return acc;
+}, {});
+
+function groupLabelForCategory(id) {
+  return CATEGORY_GROUP_MAP[id] || "Category";
+}
 
 function buildSearchTerms(gift) {
   const base = gift.name.replace(/[()]/g, "").replace(/[^a-z0-9\s]/gi, "").trim();
@@ -352,6 +363,7 @@ function buildCategoryCards(categories) {
     const card = document.createElement("div");
     card.className = "occasion-card";
     card.innerHTML = `
+      <span class="category-kicker">${groupLabelForCategory(category.id)}</span>
       <h3>${category.label}</h3>
       <p>${category.description}</p>
       <button type="button" class="occasion-cta" data-category="${category.id}">Start ${category.label}</button>
