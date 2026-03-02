@@ -102,9 +102,8 @@ body {
   inset: 18px;
   border-radius: 24px;
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(243, 246, 249, 0.6)),
-    radial-gradient(circle at 25% 20%, rgba(0, 174, 239, 0.35), transparent 55%),
-    radial-gradient(circle at 80% 70%, rgba(43, 47, 51, 0.2), transparent 60%);
+    url("assets/hero-abstract.svg") center/cover no-repeat,
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(243, 246, 249, 0.6));
 }
 
 .hero-card {

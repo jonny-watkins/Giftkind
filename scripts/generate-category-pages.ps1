@@ -155,6 +155,22 @@ $template = @'
 
       <section id="results"></section>
 
+      <section class="panel related">
+        <h2>Explore more categories</h2>
+        <div class="category-links">
+          <a href="gifts-for-him.html">Gifts for Him</a>
+          <a href="gifts-for-her.html">Gifts for Her</a>
+          <a href="gifts-for-wife.html">Gifts for Wife</a>
+          <a href="gifts-for-husband.html">Gifts for Husband</a>
+          <a href="fathers-day.html">Father's Day</a>
+          <a href="birthday-30.html">30th birthday</a>
+          <a href="baby-shower.html">Baby shower gifts</a>
+          <a href="anniversary-10.html">10th anniversary</a>
+          <a href="teacher-end-term.html">Teacher gifts</a>
+          <a href="minimalist-gifts.html">Minimalist gifts</a>
+        </div>
+      </section>
+
       <section class="panel disclosure">
         <h2>About GiftKind</h2>
         <p>
@@ -211,6 +227,9 @@ $template = @'
           <div>
             <strong>Gift-Kind</strong>
             <p class="small">Smart gifting, simplified.</p>
+            <p class="small">
+              <a href="robots.txt">Robots</a> &bull; <a href="sitemap.xml">Sitemap</a>
+            </p>
           </div>
         </div>
         <div>
