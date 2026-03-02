@@ -4,10 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GiftKind - Gift Finder for Every Occasion</title>
+    <meta
+      name="description"
+      content="Smart gift recommendations for every occasion. Answer a few quick questions and get curated ideas that match budget and style."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/styles.css" />
@@ -25,33 +29,42 @@
     <div class="bg-gradient"></div>
     <main class="shell">
       <header class="hero">
-        <div class="page-switch">
-          <span class="switch-label">Occasion:</span>
-          <a class="switch-link active" href="index.html">Home</a>
+        <div class="header-bar">
+          <a class="logo" href="index.html" aria-label="Gift-Kind home">
+            <svg viewBox="0 0 48 48" role="img" aria-hidden="true">
+              <rect x="6" y="10" width="36" height="32" rx="8"></rect>
+              <path d="M14 10c0-4.4 3.6-8 8-8 1.6 0 3.1.5 4.4 1.3C27.7 1.9 29.2 1.4 30.8 1.4c4.4 0 8 3.6 8 8v2H14z"></path>
+              <path d="M24 10v32"></path>
+              <path d="M6 26h36"></path>
+            </svg>
+            <span>Gift-Kind</span>
+          </a>
+          <div class="page-switch">
+            <span class="switch-label">Home</span>
+            <a class="switch-link active" href="index.html">Finder</a>
+          </div>
         </div>
         <div class="hero-grid">
           <div class="hero-content">
-            <span class="badge">GiftKind</span>
-            <h1>Gift recommendations that feel personal.</h1>
+            <h1>Gift recommendations that feel <span class="accent">personal</span>.</h1>
             <p class="lede">
-              GiftKind helps you pick thoughtful gifts fast. Choose a category, answer a few quick
+              Gift-Kind is a smart recommendation tool. Choose a category, answer a few quick
               questions, and get curated ideas that match budget and style.
             </p>
-            <div class="hero-meta">
-              <span class="pill">Fast</span>
-              <span class="pill">Thoughtful</span>
-              <span class="pill">No signup</span>
+            <div class="hero-actions">
+              <a class="primary hero-cta" href="#finder">Start recommendations</a>
+              <p class="trust-line">No signup &bull; UK-friendly &bull; Takes 30 seconds</p>
             </div>
           </div>
           <div class="hero-visual" aria-hidden="true">
             <div class="hero-photo"></div>
             <div class="hero-card hero-card-one">
-              <p>“This finally helped me pick something meaningful.”</p>
-              <span>GiftKind user</span>
+              <p>"Clear picks without the endless scrolling."</p>
+              <span>Gift-Kind user</span>
             </div>
             <div class="hero-card hero-card-two">
-              <strong>Budget ready</strong>
-              <span>Curated ideas in minutes.</span>
+              <strong>Smart filters</strong>
+              <span>Results tailored to taste.</span>
             </div>
           </div>
         </div>
@@ -61,9 +74,46 @@
         <h2>Browse categories</h2>
         <p class="lede">Pick a category to get started. You can also scroll to the form below.</p>
         <div class="occasion-grid" id="categoryGrid"></div>
+        <div class="category-links" aria-label="All categories">
+          <a href="gifts-for-him.html">Gifts for Him</a>
+          <a href="gifts-for-her.html">Gifts for Her</a>
+          <a href="gifts-for-wife.html">Gifts for Wife</a>
+          <a href="gifts-for-husband.html">Gifts for Husband</a>
+          <a href="gifts-for-brother.html">Gifts for Brother</a>
+          <a href="gifts-for-sister.html">Gifts for Sister</a>
+          <a href="gifts-for-mother-in-law.html">Gifts for Mother-in-law</a>
+          <a href="gifts-for-step-parents.html">Gifts for Step Parents</a>
+          <a href="gifts-for-grandparents.html">Grandparents gifts</a>
+          <a href="meaningful-gifts.html">Meaningful gifts</a>
+          <a href="fathers-day.html">Father's Day</a>
+          <a href="birthday-18.html">18th birthday</a>
+          <a href="birthday-21.html">21st birthday</a>
+          <a href="birthday-30.html">30th birthday</a>
+          <a href="birthday-40.html">40th birthday</a>
+          <a href="birthday-50.html">50th birthday</a>
+          <a href="birthday-60.html">60th birthday</a>
+          <a href="baby-shower.html">Baby shower gifts</a>
+          <a href="new-mum.html">Gifts for new mums</a>
+          <a href="new-dad.html">Gifts for new dads</a>
+          <a href="practical-baby-gifts.html">Practical baby gifts</a>
+          <a href="anniversary-1.html">1st anniversary (paper)</a>
+          <a href="anniversary-5.html">5th anniversary (wood)</a>
+          <a href="anniversary-10.html">10th anniversary (tin)</a>
+          <a href="anniversary-15.html">15th anniversary (crystal)</a>
+          <a href="anniversary-20.html">20th anniversary (china)</a>
+          <a href="anniversary-25.html">25th anniversary (silver)</a>
+          <a href="anniversary-30.html">30th anniversary (pearl)</a>
+          <a href="anniversary-40.html">40th anniversary (ruby)</a>
+          <a href="anniversary-50.html">50th anniversary (gold)</a>
+          <a href="anniversary-60.html">60th anniversary (diamond)</a>
+          <a href="teacher-end-term.html">Teacher gifts (end of term)</a>
+          <a href="teacher-end-year.html">Teacher gifts (end of year)</a>
+          <a href="minimalist-gifts.html">Minimalist gifts</a>
+          <a href="experience-gifts.html">Experience gifts</a>
+        </div>
       </section>
 
-      <section class="panel">
+      <section class="panel" id="finder">
         <form id="finderForm">
           <div class="grid">
             <div class="field">
@@ -159,6 +209,20 @@
       </section>
 
       <footer class="footer">
+        <div class="footer-brand">
+          <div class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <rect x="6" y="10" width="36" height="32" rx="8"></rect>
+              <path d="M14 10c0-4.4 3.6-8 8-8 1.6 0 3.1.5 4.4 1.3C27.7 1.9 29.2 1.4 30.8 1.4c4.4 0 8 3.6 8 8v2H14z"></path>
+              <path d="M24 10v32"></path>
+              <path d="M6 26h36"></path>
+            </svg>
+          </div>
+          <div>
+            <strong>Gift-Kind</strong>
+            <p class="small">Smart gifting, simplified.</p>
+          </div>
+        </div>
         <div>
           <strong>Policies</strong>
           <p><a href="privacy.html">Privacy Policy</a></p>
@@ -174,3 +238,9 @@
     <script src="assets/app-master.js" defer></script>
   </body>
 </html>
+
+
+
+
+
+

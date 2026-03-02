@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 const BASE_INTERESTS = [
   { key: "tech", label: "Tech" },
@@ -29,7 +29,7 @@ const SENTIMENTS = [
   { key: "high", label: "High (personal / keepsake)" }
 ];
 
-const CURRENCY = "£";
+const CURRENCY = "\u00A3";
 const AMAZON_BASE = "https://www.amazon.co.uk/s?k=";
 const AMAZON_TAG = "giftkind-21";
 const AMAZON_MAX_LINKS = 7;
@@ -105,6 +105,13 @@ const CATEGORY_GROUP_MAP = CATEGORY_GROUPS.reduce((acc, group) => {
 
 function groupLabelForCategory(id) {
   return CATEGORY_GROUP_MAP[id] || "Category";
+}
+
+function getPreferredCategoryId() {
+  const params = new URLSearchParams(window.location.search);
+  const fromQuery = params.get("category");
+  const fromBody = document.body ? document.body.dataset.category : "";
+  return fromQuery || fromBody || "";
 }
 
 function buildSearchTerms(gift) {
@@ -198,14 +205,24 @@ function escapeHtml(value) {
 
 function prettyTag(tag) {
   const map = {
-    low: "useful",
-    med: "thoughtful",
-    high: "keepsake",
-    practical: "practical",
-    fun: "fun",
-    style: "style",
-    luxury: "luxury",
-    meaningful: "meaningful"
+    low: "Useful",
+    med: "Thoughtful",
+    high: "Keepsake",
+    practical: "Practical",
+    fun: "Fun",
+    style: "Style",
+    luxury: "Luxury",
+    meaningful: "Meaningful",
+    experiences: "Experience",
+    tech: "Tech",
+    coffee: "Coffee",
+    fitness: "Fitness",
+    cooking: "Cooking",
+    outdoors: "Outdoors",
+    gaming: "Gaming",
+    books: "Books",
+    travel: "Travel",
+    home: "Home"
   };
   return map[tag] || tag;
 }
@@ -358,15 +375,17 @@ function fillSelect(id, items, defaultKey) {
 
 function buildCategoryCards(categories) {
   const wrap = $("categoryGrid");
+  if (!wrap) return;
   wrap.innerHTML = "";
   categories.forEach((category) => {
+    const pageUrl = `${category.id}.html`;
     const card = document.createElement("div");
     card.className = "occasion-card";
     card.innerHTML = `
       <span class="category-kicker">${groupLabelForCategory(category.id)}</span>
       <h3>${category.label}</h3>
       <p>${category.description}</p>
-      <button type="button" class="occasion-cta" data-category="${category.id}">Start ${category.label}</button>
+      <a class="occasion-cta" href="${pageUrl}" data-category="${category.id}">Start ${category.label}</a>
     `;
     wrap.appendChild(card);
   });
@@ -552,10 +571,16 @@ function updateCategoryUI(category) {
 function initCategoryCards() {
   const categories = getCategoryGroups().flatMap((group) => group.items);
   buildCategoryCards(categories);
-  $("categoryGrid").addEventListener("click", (event) => {
-    const button = event.target.closest("button[data-category]");
-    if (!button) return;
-    const categoryId = button.dataset.category;
+  const grid = $("categoryGrid");
+  if (!grid) return;
+  grid.addEventListener("click", (event) => {
+    const link = event.target.closest("a[data-category]");
+    if (!link) return;
+    if (document.body && document.body.dataset.category) {
+      return;
+    }
+    event.preventDefault();
+    const categoryId = link.dataset.category;
     $("category").value = categoryId;
     updateCategoryUI(getCategory(categoryId));
     $("finderForm").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -950,7 +975,9 @@ document.addEventListener("DOMContentLoaded", () => {
   populateCategorySelect();
   initCategoryCards();
   trackUnlockFromQuery();
-  const initialCategory = CATEGORIES[0];
+  const preferred = getPreferredCategoryId();
+  const initialCategory = preferred ? getCategory(preferred) : CATEGORIES[0];
+  $("category").value = initialCategory.id;
   updateCategoryUI(initialCategory);
   const results = $("results");
   results.addEventListener("click", (event) => {
@@ -975,3 +1002,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   generate("auto");
 });
+
+
+
+
+
+
+
+

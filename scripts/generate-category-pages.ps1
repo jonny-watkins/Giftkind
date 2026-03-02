@@ -1,10 +1,49 @@
+$categories = @(
+  @{ id = "gifts-for-him"; label = "Gifts for Him"; description = "Practical upgrades, tech picks, and easy wins." },
+  @{ id = "gifts-for-her"; label = "Gifts for Her"; description = "Thoughtful, stylish, and meaningful ideas." },
+  @{ id = "gifts-for-wife"; label = "Gifts for Wife"; description = "Romantic, thoughtful, and special ideas." },
+  @{ id = "gifts-for-husband"; label = "Gifts for Husband"; description = "Everyday upgrades with a thoughtful touch." },
+  @{ id = "gifts-for-brother"; label = "Gifts for Brother"; description = "Fun, practical, and easy ideas for him." },
+  @{ id = "gifts-for-sister"; label = "Gifts for Sister"; description = "Thoughtful treats and practical upgrades." },
+  @{ id = "gifts-for-mother-in-law"; label = "Gifts for Mother-in-law"; description = "Warm, thoughtful, and easy to buy." },
+  @{ id = "gifts-for-step-parents"; label = "Gifts for Step Parents"; description = "Thoughtful and neutral gifts that feel considerate." },
+  @{ id = "gifts-for-grandparents"; label = "Grandparents gifts"; description = "Keepsakes and comfort gifts they will love." },
+  @{ id = "meaningful-gifts"; label = "Meaningful gifts"; description = "Gifts that feel personal and lasting." },
+  @{ id = "fathers-day"; label = "Father's Day"; description = "Practical, thoughtful, and easy wins for dad." },
+  @{ id = "birthday-18"; label = "18th birthday"; description = "Celebrate the big 18 with memorable picks." },
+  @{ id = "birthday-21"; label = "21st birthday"; description = "Fun and meaningful ideas for 21." },
+  @{ id = "birthday-30"; label = "30th birthday"; description = "Celebrate 30 with upgrades and keepsakes." },
+  @{ id = "birthday-40"; label = "40th birthday"; description = "Thoughtful and premium ideas for 40." },
+  @{ id = "birthday-50"; label = "50th birthday"; description = "Celebrate 50 with something memorable." },
+  @{ id = "birthday-60"; label = "60th birthday"; description = "Classic and meaningful gifts for 60." },
+  @{ id = "baby-shower"; label = "Baby shower gifts"; description = "Registry-friendly and practical picks." },
+  @{ id = "new-mum"; label = "Gifts for new mums"; description = "Comfort and care for a new mum." },
+  @{ id = "new-dad"; label = "Gifts for new dads"; description = "Practical gifts that make dad life easier." },
+  @{ id = "practical-baby-gifts"; label = "Practical baby gifts"; description = "Essentials parents actually use." },
+  @{ id = "anniversary-1"; label = "1st anniversary (paper)"; description = "Paper-themed gifts with meaning." },
+  @{ id = "anniversary-5"; label = "5th anniversary (wood)"; description = "Wood-themed keepsakes and upgrades." },
+  @{ id = "anniversary-10"; label = "10th anniversary (tin)"; description = "Tin-themed gifts that feel special." },
+  @{ id = "anniversary-15"; label = "15th anniversary (crystal)"; description = "Crystal-inspired gifts and keepsakes." },
+  @{ id = "anniversary-20"; label = "20th anniversary (china)"; description = "China-inspired gifts with elegance." },
+  @{ id = "anniversary-25"; label = "25th anniversary (silver)"; description = "Silver-themed gifts for a big milestone." },
+  @{ id = "anniversary-30"; label = "30th anniversary (pearl)"; description = "Pearl-inspired gifts for year 30." },
+  @{ id = "anniversary-40"; label = "40th anniversary (ruby)"; description = "Ruby-inspired gifts with meaning." },
+  @{ id = "anniversary-50"; label = "50th anniversary (gold)"; description = "Gold-themed gifts for a golden year." },
+  @{ id = "anniversary-60"; label = "60th anniversary (diamond)"; description = "Diamond-inspired gifts for 60 years." },
+  @{ id = "teacher-end-term"; label = "Teacher gifts (end of term)"; description = "Thank-you gifts for teachers." },
+  @{ id = "teacher-end-year"; label = "Teacher gifts (end of year)"; description = "A bigger thank-you for the year." },
+  @{ id = "minimalist-gifts"; label = "Minimalist gifts"; description = "Clean, simple gifts with purpose." },
+  @{ id = "experience-gifts"; label = "Experience gifts"; description = "Memories over things." }
+)
+
+$template = @'
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Baby shower gifts | Gift-Kind</title>
-    <meta name="description" content="Gift recommendations for Baby shower gifts. Registry-friendly and practical picks. Answer a few quick questions to get curated ideas that match budget and style." />
+    <title>__TITLE__</title>
+    <meta name="description" content="__META__" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,7 +61,7 @@
       gtag("config", "G-TK2V374444");
     </script>
   </head>
-  <body data-category="baby-shower">
+  <body data-category="__ID__">
     <div class="bg-gradient"></div>
     <main class="shell">
       <header class="hero">
@@ -43,8 +82,8 @@
         </div>
         <div class="hero-grid">
           <div class="hero-content">
-            <h1>Baby shower gifts recommendations that feel <span class="accent">personal</span>.</h1>
-            <p class="lede">Registry-friendly and practical picks. Answer a few quick questions and get curated ideas that match budget and style.</p>
+            <h1>__LABEL__ recommendations that feel <span class="accent">personal</span>.</h1>
+            <p class="lede">__DESC__ Answer a few quick questions and get curated ideas that match budget and style.</p>
             <div class="hero-actions">
               <a class="primary hero-cta" href="#finder">Start recommendations</a>
               <p class="trust-line">No signup &bull; UK-friendly &bull; Takes 30 seconds</p>
@@ -189,3 +228,11 @@
     <script src="assets/app-master.js" defer></script>
   </body>
 </html>
+'@
+
+foreach ($cat in $categories) {
+  $title = "$($cat.label) | Gift-Kind"
+  $meta = "Gift recommendations for $($cat.label). $($cat.description) Answer a few quick questions to get curated ideas that match budget and style."
+  $html = $template.Replace("__TITLE__", $title).Replace("__META__", $meta).Replace("__ID__", $cat.id).Replace("__LABEL__", $cat.label).Replace("__DESC__", $cat.description)
+  Set-Content -Path "$($cat.id).html" -Value $html
+}
