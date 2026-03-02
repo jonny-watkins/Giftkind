@@ -36,6 +36,44 @@ $categories = @(
   @{ id = "experience-gifts"; label = "Experience gifts"; description = "Memories over things." }
 )
 
+$keywordMap = @{
+  "gifts-for-him" = @("gifts for him uk", "gift ideas for him", "birthday gifts for him")
+  "gifts-for-her" = @("gifts for her uk", "gift ideas for her", "thoughtful gifts for her")
+  "gifts-for-wife" = @("gifts for wife", "romantic gifts for wife", "anniversary gifts for wife")
+  "gifts-for-husband" = @("gifts for husband", "gift ideas for husband", "anniversary gifts for husband")
+  "gifts-for-brother" = @("gifts for brother", "gift ideas for brother", "birthday gifts for brother")
+  "gifts-for-sister" = @("gifts for sister", "gift ideas for sister", "birthday gifts for sister")
+  "gifts-for-mother-in-law" = @("gifts for mother in law", "mother in law gift ideas", "thoughtful gifts for mother in law")
+  "gifts-for-step-parents" = @("gifts for step parents", "step parent gift ideas", "neutral gifts for parents")
+  "gifts-for-grandparents" = @("gifts for grandparents", "grandparents gift ideas", "meaningful gifts for grandparents")
+  "meaningful-gifts" = @("meaningful gifts", "personalised gift ideas", "keepsake gifts")
+  "fathers-day" = @("fathers day gifts", "fathers day gifts uk", "gifts for dad", "fathers day gift ideas", "fathers day gifts this year")
+  "birthday-18" = @("18th birthday gifts", "18th birthday gift ideas", "gifts for 18 year old", "18th birthday gifts uk")
+  "birthday-21" = @("21st birthday gifts", "21st birthday gift ideas", "gifts for 21 year old", "21st birthday gifts uk")
+  "birthday-30" = @("30th birthday gifts", "30th birthday gift ideas", "gifts for 30 year old", "30th birthday gifts uk")
+  "birthday-40" = @("40th birthday gifts", "40th birthday gift ideas", "gifts for 40 year old", "40th birthday gifts uk")
+  "birthday-50" = @("50th birthday gifts", "50th birthday gift ideas", "gifts for 50 year old", "50th birthday gifts uk")
+  "birthday-60" = @("60th birthday gifts", "60th birthday gift ideas", "gifts for 60 year old", "60th birthday gifts uk")
+  "baby-shower" = @("baby shower gifts", "baby shower gifts uk", "best baby shower gifts", "baby shower gift ideas")
+  "new-mum" = @("gifts for new mums", "new mum gift ideas", "postpartum gifts")
+  "new-dad" = @("gifts for new dads", "new dad gift ideas", "gifts for first time dads")
+  "practical-baby-gifts" = @("practical baby gifts", "baby essentials gifts", "useful baby gifts")
+  "anniversary-1" = @("1st anniversary gifts", "paper anniversary gifts", "first anniversary gift ideas", "1st anniversary gifts uk")
+  "anniversary-5" = @("5th anniversary gifts", "wood anniversary gifts", "fifth anniversary gift ideas", "5th anniversary gifts uk")
+  "anniversary-10" = @("10th anniversary gifts", "tin anniversary gifts", "tenth anniversary gift ideas", "10th anniversary gifts uk")
+  "anniversary-15" = @("15th anniversary gifts", "crystal anniversary gifts", "fifteenth anniversary gift ideas", "15th anniversary gifts uk")
+  "anniversary-20" = @("20th anniversary gifts", "china anniversary gifts", "twentieth anniversary gift ideas", "20th anniversary gifts uk")
+  "anniversary-25" = @("25th anniversary gifts", "silver anniversary gifts", "twenty fifth anniversary gift ideas", "25th anniversary gifts uk")
+  "anniversary-30" = @("30th anniversary gifts", "pearl anniversary gifts", "thirtieth anniversary gift ideas", "30th anniversary gifts uk")
+  "anniversary-40" = @("40th anniversary gifts", "ruby anniversary gifts", "fortieth anniversary gift ideas", "40th anniversary gifts uk")
+  "anniversary-50" = @("50th anniversary gifts", "gold anniversary gifts", "fiftieth anniversary gift ideas", "50th anniversary gifts uk")
+  "anniversary-60" = @("60th anniversary gifts", "diamond anniversary gifts", "sixtieth anniversary gift ideas", "60th anniversary gifts uk")
+  "teacher-end-term" = @("teacher gifts end of term", "teacher gift ideas", "thank you teacher gifts", "teacher gifts uk")
+  "teacher-end-year" = @("teacher gifts end of year", "end of year teacher gifts", "teacher thank you gift ideas", "teacher gifts uk")
+  "minimalist-gifts" = @("minimalist gifts", "simple gift ideas", "minimalist gift ideas")
+  "experience-gifts" = @("experience gifts", "experience gifts uk", "experience gift ideas", "experience day gifts")
+}
+
 $template = @'
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +97,20 @@ $template = @'
       }
       gtag("js", new Date());
       gtag("config", "G-TK2V374444");
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "__TITLE__",
+        "description": "__META__",
+        "url": "__URL__",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Gift-Kind",
+          "url": "https://gift-kind.com"
+        }
+      }
     </script>
   </head>
   <body data-category="__ID__">
@@ -104,6 +156,12 @@ $template = @'
       </header>
 
       <section class="panel" id="finder">
+        <h2>__LABEL__ gift ideas</h2>
+        <p class="lede">
+          Looking for __LABEL__ gift ideas? These picks balance thoughtful keepsakes with practical
+          upgrades, curated to match different budgets and styles.
+        </p>
+        <p class="small seo-keywords">Popular searches: __KEYWORDS__.</p>
         <form id="finderForm">
           <div class="grid">
             <div class="field">
@@ -252,6 +310,12 @@ $template = @'
 foreach ($cat in $categories) {
   $title = "$($cat.label) | Gift-Kind"
   $meta = "Gift recommendations for $($cat.label). $($cat.description) Answer a few quick questions to get curated ideas that match budget and style."
-  $html = $template.Replace("__TITLE__", $title).Replace("__META__", $meta).Replace("__ID__", $cat.id).Replace("__LABEL__", $cat.label).Replace("__DESC__", $cat.description)
+  $url = "https://gift-kind.com/$($cat.id).html"
+  $keywords = $keywordMap[$cat.id]
+  if (-not $keywords) {
+    $keywords = @("$($cat.label) gifts", "$($cat.label) gift ideas", "best $($cat.label) gifts")
+  }
+  $keywordText = $keywords -join ", "
+  $html = $template.Replace("__TITLE__", $title).Replace("__META__", $meta).Replace("__ID__", $cat.id).Replace("__LABEL__", $cat.label).Replace("__DESC__", $cat.description).Replace("__KEYWORDS__", $keywordText).Replace("__URL__", $url)
   Set-Content -Path "$($cat.id).html" -Value $html
 }

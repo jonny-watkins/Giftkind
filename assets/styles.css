@@ -240,6 +240,10 @@ body[data-category] .occasion-grid {
   border-color: var(--primary);
 }
 
+.seo-keywords {
+  margin-top: -6px;
+}
+
 .occasion-card {
   border: 1px solid var(--line);
   border-radius: 12px;
