@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GiftKind - Mother's Day Gift Finder</title>
+    <title>Mother's Day gifts | Gift-Kind</title>
+    <meta
+      name="description"
+      content="Gift recommendations for Mother's Day. Answer a few quick questions and get curated ideas that match budget and style."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/styles.css" />
@@ -25,28 +29,50 @@
     <div class="bg-gradient"></div>
     <main class="shell">
       <header class="hero">
-        <div class="page-switch">
-          <span class="switch-label">Occasion:</span>
-          <a class="switch-link" href="index.html">Home</a>
-          <a class="switch-link active" href="mothers-day.html">Mother's Day</a>
-          <a class="switch-link" href="baby-shower.html">Baby shower</a>
-          <a class="switch-link" href="brother-in-law.html">Brother-in-law</a>
+        <div class="header-bar">
+          <a class="logo" href="index.html" aria-label="Gift-Kind home">
+            <svg viewBox="0 0 48 48" role="img" aria-hidden="true">
+              <rect x="6" y="10" width="36" height="32" rx="8"></rect>
+              <path d="M14 10c0-4.4 3.6-8 8-8 1.6 0 3.1.5 4.4 1.3C27.7 1.9 29.2 1.4 30.8 1.4c4.4 0 8 3.6 8 8v2H14z"></path>
+              <path d="M24 10v32"></path>
+              <path d="M6 26h36"></path>
+            </svg>
+            <span>Gift-Kind</span>
+          </a>
+          <div class="page-switch">
+            <span class="switch-label">Occasion</span>
+            <a class="switch-link" href="index.html">Home</a>
+            <a class="switch-link active" href="mothers-day.html">Mother's Day</a>
+            <a class="switch-link" href="baby-shower.html">Baby shower</a>
+            <a class="switch-link" href="brother-in-law.html">Brother-in-law</a>
+          </div>
         </div>
-        <span class="badge">GiftKind</span>
-        <h1>Find the perfect Mother's Day gift in 30 seconds.</h1>
-        <p class="lede">
-          Answer a few quick questions and get gift ideas that feel personal, based on budget and
-          personality.
-        </p>
-        <div class="hero-meta">
-          <span class="pill">Fast</span>
-          <span class="pill">Thoughtful</span>
-          <span class="pill">Static-site friendly</span>
-          <span class="pill">No signup</span>
+        <div class="hero-grid">
+          <div class="hero-content">
+            <h1>Mother's Day gifts that feel <span class="accent">personal</span>.</h1>
+            <p class="lede">
+              Answer a few quick questions and get curated ideas that match budget and style.
+            </p>
+            <div class="hero-actions">
+              <a class="primary hero-cta" href="#finder">Start recommendations</a>
+              <p class="trust-line">No signup &bull; UK-friendly &bull; Takes 30 seconds</p>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-photo"></div>
+            <div class="hero-card hero-card-one">
+              <p>"Clear picks without the endless scrolling."</p>
+              <span>Gift-Kind user</span>
+            </div>
+            <div class="hero-card hero-card-two">
+              <strong>Smart filters</strong>
+              <span>Results tailored to taste.</span>
+            </div>
+          </div>
         </div>
       </header>
 
-      <section class="panel">
+      <section class="panel" id="finder">
         <form id="finderForm">
           <div class="grid">
             <div class="field">
