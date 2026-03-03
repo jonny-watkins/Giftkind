@@ -208,6 +208,24 @@ body {
   color: var(--muted);
 }
 
+.seo-expanded {
+  margin: 10px 0 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(0, 174, 239, 0.08);
+  border: 1px solid rgba(0, 174, 239, 0.18);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.seo-expanded p {
+  margin: 0 0 8px;
+}
+
+.seo-expanded p:last-child {
+  margin-bottom: 0;
+}
+
 .occasion-grid {
   display: grid;
   gap: 16px;
