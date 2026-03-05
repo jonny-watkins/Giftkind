@@ -35,6 +35,286 @@ const AMAZON_TAG = "giftkind-21";
 const AMAZON_MAX_LINKS = 7;
 const AMAZON_EXACT_LINKS_ONLY = false;
 const AMAZON_LINKS = typeof window !== "undefined" && window.AMAZON_LINKS ? window.AMAZON_LINKS : {};
+let CURRENT_CONTEXT = null;
+const GIFT_PRODUCTS = [
+  {
+    asin: "B08KGTW3CV",
+    name: "Yankee Candle Small Jar Candle Clean Cotton",
+    price: "under15",
+    tags: ["cosy", "sentimental"],
+    category: ["her", "mum", "teacher", "grandparents"]
+  },
+  {
+    asin: "B07Y2Y7Y3V",
+    name: "Lavender Bath Spa Gift Set",
+    price: "under25",
+    tags: ["cosy", "sentimental"],
+    category: ["her", "mum", "wife"]
+  },
+  {
+    asin: "B07PGL2ZSL",
+    name: "Echo Dot Smart Speaker Alexa",
+    price: "under50",
+    tags: ["practical", "tech"],
+    category: ["him", "her", "dad", "husband"]
+  },
+  {
+    asin: "B07FNPQ8X5",
+    name: "Oral-B Pro Electric Toothbrush",
+    price: "under100",
+    tags: ["practical"],
+    category: ["him", "her"]
+  },
+  {
+    asin: "B08KH53NKR",
+    name: "Hotel Chocolat Velvetiser Hot Chocolate Maker",
+    price: "under100",
+    tags: ["luxury", "cosy"],
+    category: ["wife", "mum"]
+  },
+  {
+    asin: "B08K98RZQ7",
+    name: "RENPHO Foot Massager Machine",
+    price: "under50",
+    tags: ["practical", "cosy"],
+    category: ["mum", "dad", "grandparents"]
+  },
+  {
+    asin: "B09JQF3Q8M",
+    name: "RENPHO Shiatsu Neck Massager",
+    price: "under100",
+    tags: ["practical", "cosy"],
+    category: ["him", "her", "parents"]
+  },
+  {
+    asin: "B09T3B9F9T",
+    name: "Cath Kidston Floral Mug Gift Box",
+    price: "under15",
+    tags: ["sentimental", "cosy"],
+    category: ["mum", "teacher", "sister"]
+  },
+  {
+    asin: "B07K4C5H6R",
+    name: "Personalised Initial Necklace",
+    price: "under25",
+    tags: ["sentimental", "luxury"],
+    category: ["wife", "girlfriend", "her"]
+  },
+  {
+    asin: "B09TQZ9VQH",
+    name: "Wooden Memory Photo Frame",
+    price: "under15",
+    tags: ["sentimental"],
+    category: ["mum", "grandparents"]
+  },
+  {
+    asin: "B07Y1X5V6H",
+    name: "Whiskey Stones Gift Set",
+    price: "under25",
+    tags: ["hobby", "luxury"],
+    category: ["him", "brother", "dad"]
+  },
+  {
+    asin: "B09K7Z6G4L",
+    name: "Leather Wallet RFID Blocking",
+    price: "under25",
+    tags: ["practical", "luxury"],
+    category: ["him", "husband", "dad"]
+  },
+  {
+    asin: "B08M9F9K7T",
+    name: "Electric Wine Opener Set",
+    price: "under50",
+    tags: ["hobby", "luxury"],
+    category: ["wife", "mum", "couples"]
+  },
+  {
+    asin: "B08L9C3Y9P",
+    name: "Luxury Fleece Throw Blanket",
+    price: "under25",
+    tags: ["cosy"],
+    category: ["mum", "grandparents", "her"]
+  },
+  {
+    asin: "B08B5T7Q8N",
+    name: "Bluetooth Beanie Hat Headphones",
+    price: "under25",
+    tags: ["hobby", "tech"],
+    category: ["him", "brother"]
+  },
+  {
+    asin: "B08Y7H3Q9P",
+    name: "Mini Indoor Herb Garden Kit",
+    price: "under25",
+    tags: ["hobby"],
+    category: ["mum", "teacher"]
+  },
+  {
+    asin: "B07P8M3Z5H",
+    name: "Scratch Off World Map Poster",
+    price: "under25",
+    tags: ["hobby"],
+    category: ["him", "brother", "dad"]
+  },
+  {
+    asin: "B09W3Z7F5Q",
+    name: "Heated Electric Blanket Throw",
+    price: "under50",
+    tags: ["cosy", "practical"],
+    category: ["mum", "grandparents"]
+  },
+  {
+    asin: "B07VZ3H6F8",
+    name: "Aromatherapy Essential Oil Diffuser",
+    price: "under25",
+    tags: ["cosy", "sentimental"],
+    category: ["her", "mum"]
+  },
+  {
+    asin: "B08X7Y9P6T",
+    name: "Kindle E-Reader",
+    price: "under100",
+    tags: ["hobby", "luxury"],
+    category: ["mum", "dad", "grandparents"]
+  },
+  {
+    asin: "B08Q2X9V6K",
+    name: "Kindle Paperwhite",
+    price: "under100",
+    tags: ["hobby", "luxury"],
+    category: ["him", "her"]
+  },
+  {
+    asin: "B07ZPKBL9V",
+    name: "LEGO Bonsai Tree Building Set",
+    price: "under50",
+    tags: ["hobby"],
+    category: ["him", "her"]
+  },
+  {
+    asin: "B09K2H5Z3L",
+    name: "Gardening Tool Gift Set",
+    price: "under50",
+    tags: ["hobby", "practical"],
+    category: ["mum", "grandparents"]
+  },
+  {
+    asin: "B07Z3K2V6T",
+    name: "Portable Espresso Maker",
+    price: "under50",
+    tags: ["hobby", "luxury"],
+    category: ["him", "brother"]
+  },
+  {
+    asin: "B07Q2P4Z6X",
+    name: "Luxury Silk Sleep Mask",
+    price: "under25",
+    tags: ["luxury", "cosy"],
+    category: ["wife", "her"]
+  },
+  {
+    asin: "B08N5WRWNW",
+    name: "Fire TV Stick",
+    price: "under50",
+    tags: ["tech", "practical"],
+    category: ["him", "her", "parents"]
+  },
+  {
+    asin: "B09R5T3Q2K",
+    name: "Back and Neck Heated Massager",
+    price: "under50",
+    tags: ["cosy", "practical"],
+    category: ["mum", "dad"]
+  },
+  {
+    asin: "B08G8X9Z6Y",
+    name: "Personalised Family Name Sign",
+    price: "under50",
+    tags: ["sentimental"],
+    category: ["mum", "grandparents"]
+  },
+  {
+    asin: "B07L2H4M6F",
+    name: "Bluetooth Shower Speaker",
+    price: "under25",
+    tags: ["tech", "hobby"],
+    category: ["him", "brother"]
+  },
+  {
+    asin: "B09N3X5F6Y",
+    name: "Mini Projector",
+    price: "under100",
+    tags: ["tech", "hobby"],
+    category: ["him", "family"]
+  },
+  {
+    asin: "B08Y7X5Z3P",
+    name: "Indoor Pizza Oven Stone Kit",
+    price: "under50",
+    tags: ["hobby"],
+    category: ["him", "dad"]
+  },
+  {
+    asin: "B07Y2V6X5L",
+    name: "Luxury Bath Robe",
+    price: "under50",
+    tags: ["cosy", "luxury"],
+    category: ["mum", "wife"]
+  },
+  {
+    asin: "B07X5Z8Y3P",
+    name: "Coffee Grinder Burr Electric",
+    price: "under50",
+    tags: ["hobby"],
+    category: ["him", "brother"]
+  },
+  {
+    asin: "B08F5Y3Z7K",
+    name: "Vintage Style Record Player",
+    price: "under100",
+    tags: ["hobby", "luxury"],
+    category: ["him", "her"]
+  },
+  {
+    asin: "B08R3Z6K4L",
+    name: "Memory Keepsake Journal",
+    price: "under15",
+    tags: ["sentimental"],
+    category: ["mum", "grandparents"]
+  },
+  {
+    asin: "B08J7X3Q5P",
+    name: "Cookbook Stand Wooden",
+    price: "under25",
+    tags: ["practical"],
+    category: ["mum", "grandparents"]
+  },
+  {
+    asin: "B07V4F3X8K",
+    name: "Travel Jewellery Organizer",
+    price: "under15",
+    tags: ["practical", "luxury"],
+    category: ["wife", "sister"]
+  },
+  {
+    asin: "B07T8Z5X9P",
+    name: "Photo Clip String Lights",
+    price: "under15",
+    tags: ["sentimental"],
+    category: ["her", "sister"]
+  },
+  {
+    asin: "B08C7Y4Z5L",
+    name: "Luxury Chocolate Gift Box",
+    price: "under25",
+    tags: ["luxury", "cosy"],
+    category: ["mum", "wife"]
+  }
+];
+const ASINS_UNDER_15 = ["B0C8MDZDL4", "B0BB6JQNSS", "B0C8M8LN6G"];
+const ASINS_UNDER_25 = ["B0CQNGFXJ4", "B0F33B5YB3", "B0CKVTRJV4"];
+const ASINS_UNDER_50 = ["B0DJFKDBVZ", "B0C36K2J3C", "B0D639V213"];
+const ASINS_UNDER_100 = ["B09G9X4V3Q", "B07PGL2ZSL", "B07P6Y7954"];
 const UNLOCK_KEY = "mdgf_unlocked";
 const MAX_RESULTS = 8;
 const LOCKED_RESULTS = 3;
@@ -155,6 +435,94 @@ function asinsToLinks(asins, giftName) {
   }));
 }
 
+function budgetToTier(value) {
+  if (value <= 15) return "under15";
+  if (value <= 25) return "under25";
+  if (value <= 50) return "under50";
+  return "under100";
+}
+
+function poolCategoriesForPage(id) {
+  const map = {
+    "gifts-for-him": ["him"],
+    "gifts-for-her": ["her"],
+    "gifts-for-wife": ["wife", "her"],
+    "gifts-for-husband": ["husband", "him"],
+    "gifts-for-brother": ["brother", "him"],
+    "gifts-for-sister": ["sister", "her"],
+    "gifts-for-mother-in-law": ["mum", "her", "parents"],
+    "gifts-for-step-parents": ["parents", "mum", "dad"],
+    "gifts-for-grandparents": ["grandparents", "parents"],
+    "meaningful-gifts": ["mum", "her", "parents", "family", "grandparents"],
+    "mothers-day": ["mum", "her"],
+    "fathers-day": ["dad", "him"],
+    "baby-shower": ["parents", "mum", "dad"],
+    "new-mum": ["mum", "her", "parents"],
+    "new-dad": ["dad", "him", "parents"],
+    "practical-baby-gifts": ["parents", "mum", "dad"],
+    "teacher-end-term": ["teacher"],
+    "teacher-end-year": ["teacher"],
+    "minimalist-gifts": ["him", "her", "mum", "dad", "parents", "family"],
+    "experience-gifts": ["couples", "him", "her", "mum", "dad"]
+  };
+  if (id && map[id]) return map[id];
+  if (id && id.startsWith("birthday-")) {
+    return ["him", "her", "mum", "dad", "brother", "sister", "grandparents", "wife", "husband"];
+  }
+  if (id && id.startsWith("anniversary-")) {
+    return ["wife", "husband", "couples", "her", "him"];
+  }
+  return ["him", "her", "mum", "dad", "parents", "family"];
+}
+
+function poolTagsForContext(options) {
+  const tags = new Set();
+
+  if (options.style === "practical") tags.add("practical");
+  if (options.style === "luxury" || options.style === "style") tags.add("luxury");
+  if (options.style === "meaningful" || options.style === "thoughtful") tags.add("sentimental");
+  if (options.style === "fun") tags.add("hobby");
+
+  if (options.sentiment === "high") tags.add("sentimental");
+  if (options.sentiment === "low") tags.add("practical");
+
+  options.interests.forEach((interest) => {
+    if (interest === "tech" || interest === "gaming") tags.add("tech");
+    if (interest === "coffee") tags.add("cosy");
+    if (interest === "cooking" || interest === "home") tags.add("cosy");
+    if (interest === "books" || interest === "travel" || interest === "outdoors") tags.add("hobby");
+    if (interest === "style") tags.add("luxury");
+    if (interest === "experiences") tags.add("hobby");
+  });
+
+  return Array.from(tags);
+}
+
+function pickPoolLinks(context) {
+  if (!context || !Array.isArray(GIFT_PRODUCTS) || !GIFT_PRODUCTS.length) return [];
+  const maxTier = budgetToTier(context.budget);
+  const tiers = ["under15", "under25", "under50", "under100"];
+  const maxIndex = tiers.indexOf(maxTier);
+  const allowedTiers = tiers.slice(0, maxIndex + 1);
+  const pageCategories = poolCategoriesForPage(context.categoryId);
+  const desiredTags = poolTagsForContext(context);
+
+  const scored = GIFT_PRODUCTS.filter((item) => allowedTiers.includes(item.price))
+    .map((item) => {
+      const categoryScore = item.category.some((cat) => pageCategories.includes(cat)) ? 3 : 0;
+      const tagScore = desiredTags.reduce((score, tag) => (item.tags.includes(tag) ? score + 1 : score), 0);
+      return { item, score: categoryScore + tagScore };
+    })
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  const picked = scored.slice(0, 3).map((entry) => entry.item);
+  return picked.map((item) => ({
+    label: item.name,
+    url: `https://www.amazon.co.uk/dp/${item.asin}`
+  }));
+}
+
 function buildAffiliateLinks(gift) {
   let links = [];
 
@@ -169,6 +537,10 @@ function buildAffiliateLinks(gift) {
     } else if (entry && Array.isArray(entry.asins)) {
       links = asinsToLinks(entry.asins, gift.name);
     }
+  }
+
+  if (!links.length && CURRENT_CONTEXT) {
+    links = pickPoolLinks(CURRENT_CONTEXT);
   }
 
   if (links.length) {
@@ -436,6 +808,13 @@ function generate(source = "auto") {
     avoid: parseAvoid($("avoid").value),
     interests: selectedInterests(interestList)
   };
+  CURRENT_CONTEXT = {
+    categoryId: category.id,
+    budget: options.budget,
+    style: options.style,
+    sentiment: options.sentiment,
+    interests: options.interests
+  };
 
   const scored = category.gifts
     .map((gift) => ({ gift, score: scoreGift(gift, options) }))
@@ -603,21 +982,21 @@ function buildCategories() {
   ]);
 
   const milestoneGifts = (age) => ([
-    { name: `Milestone ${age} photo book`, price: 28, tags: ["meaningful", "high", "home"], why: "A keepsake filled with memories so far." },
-    { name: "Experience voucher", price: 50, tags: ["experiences", "high"], why: "Lets them choose something exciting." },
-    { name: "Premium drink or snack hamper", price: 35, tags: ["fun", "med"], why: "Celebratory but easy to enjoy." },
-    { name: "Personalised milestone print", price: 22, tags: ["meaningful", "high", "home"], why: "Looks great on a wall or desk." },
-    { name: "Tech or home upgrade", price: 45, tags: ["practical", "tech"], why: "A gift they will actually use." },
-    { name: "Stylish accessory upgrade", price: 30, tags: ["style", "med"], why: "Feels special without being over the top." }
+    { name: `Milestone ${age} photo book`, price: 28, tags: ["meaningful", "high", "home"], why: "A keepsake filled with memories so far.", asins: ASINS_UNDER_50 },
+    { name: "Experience voucher", price: 50, tags: ["experiences", "high"], why: "Lets them choose something exciting.", asins: ASINS_UNDER_100 },
+    { name: "Premium drink or snack hamper", price: 35, tags: ["fun", "med"], why: "Celebratory but easy to enjoy.", asins: ASINS_UNDER_50 },
+    { name: "Personalised milestone print", price: 22, tags: ["meaningful", "high", "home"], why: "Looks great on a wall or desk.", asins: ASINS_UNDER_25 },
+    { name: "Tech or home upgrade", price: 45, tags: ["practical", "tech"], why: "A gift they will actually use.", asins: ASINS_UNDER_50 },
+    { name: "Stylish accessory upgrade", price: 30, tags: ["style", "med"], why: "Feels special without being over the top.", asins: ASINS_UNDER_50 }
   ]);
 
   const anniversaryGifts = (year, theme, materialTag) => ([
-    { name: `${theme} keepsake photo print`, price: 22, tags: ["meaningful", "high", materialTag], why: `A ${theme.toLowerCase()}-inspired keepsake for year ${year}.` },
-    { name: `${theme} gift set`, price: 35, tags: ["thoughtful", "med", materialTag], why: "Theme-aligned but still practical." },
-    { name: "Experience voucher for two", price: 60, tags: ["experiences", "high"], why: "Celebrate together with a shared memory." },
-    { name: "Personalised message card", price: 15, tags: ["meaningful", "high", materialTag], why: "Small, romantic, and on theme." },
-    { name: `${theme} home accent`, price: 28, tags: ["home", "style", materialTag], why: "A subtle nod to the anniversary year." },
-    { name: `${theme} accessory upgrade`, price: 40, tags: ["style", "med", materialTag], why: "Feels special without being too much." }
+    { name: `${theme} keepsake photo print`, price: 22, tags: ["meaningful", "high", materialTag], why: `A ${theme.toLowerCase()}-inspired keepsake for year ${year}.`, asins: ASINS_UNDER_25 },
+    { name: `${theme} gift set`, price: 35, tags: ["thoughtful", "med", materialTag], why: "Theme-aligned but still practical.", asins: ASINS_UNDER_50 },
+    { name: "Experience voucher for two", price: 60, tags: ["experiences", "high"], why: "Celebrate together with a shared memory.", asins: ASINS_UNDER_100 },
+    { name: "Personalised message card", price: 15, tags: ["meaningful", "high", materialTag], why: "Small, romantic, and on theme.", asins: ASINS_UNDER_15 },
+    { name: `${theme} home accent`, price: 28, tags: ["home", "style", materialTag], why: "A subtle nod to the anniversary year.", asins: ASINS_UNDER_50 },
+    { name: `${theme} accessory upgrade`, price: 40, tags: ["style", "med", materialTag], why: "Feels special without being too much.", asins: ASINS_UNDER_50 }
   ]);
 
   return [
