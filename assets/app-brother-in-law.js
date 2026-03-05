@@ -30,6 +30,8 @@ const GIFTS = [
   { name: "Portable power bank", price: 20, tags: ["tech", "practical", "med", "bil"], why: "Always useful and easy to carry." },
   { name: "Wireless earbuds", price: 45, tags: ["tech", "med", "bil"], why: "A solid everyday upgrade." },
   { name: "Bluetooth speaker", price: 35, tags: ["tech", "fun", "med", "bil"], why: "Great for music, BBQs, or the garage." },
+  { name: "Console controller upgrade", price: 55, tags: ["gaming", "tech", "bil"], why: "A safe win for console players." },
+  { name: "Latest console game", price: 60, tags: ["gaming", "tech", "bil"], why: "A new title they can play right away." },
   { name: "Beard grooming kit", price: 22, tags: ["grooming", "style", "med", "bil"], why: "A thoughtful upgrade if he keeps a beard." },
   { name: "Everyday skincare set", price: 24, tags: ["grooming", "style", "med", "bil"], why: "Useful without feeling too personal." },
   { name: "Multi-tool", price: 25, tags: ["outdoors", "practical", "med", "bil"], why: "Handy for small fixes and trips." },

@@ -597,6 +597,8 @@ function buildCategories() {
     { name: "Quality travel mug", price: 18, tags: ["practical", "med", "coffee", ...baseTags], why: "Useful every day and easy to buy." },
     { name: "Experience voucher", price: 45, tags: ["experiences", "high", "meaningful", ...baseTags], why: "Memorable without worrying about taste." },
     { name: "Smart organiser pouch", price: 20, tags: ["practical", "tech", ...baseTags], why: "Keeps cables, essentials, and gadgets tidy." },
+    { name: "Console controller upgrade", price: 55, tags: ["tech", "gaming", "fun", ...baseTags], why: "A solid upgrade for console players." },
+    { name: "Latest console game", price: 60, tags: ["tech", "gaming", "fun", ...baseTags], why: "A safe win if they love gaming." },
     { name: "Luxury candle or diffuser", price: 28, tags: ["style", "home", "med", ...baseTags], why: "Instant atmosphere for their space." }
   ]);
 
