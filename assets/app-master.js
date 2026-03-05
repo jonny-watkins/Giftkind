@@ -65,6 +65,7 @@ const CATEGORY_GROUPS = [
   {
     title: "Occasions",
     items: [
+      "mothers-day",
       "fathers-day",
       "anniversary-1",
       "anniversary-5",
@@ -728,6 +729,20 @@ function buildCategories() {
         { name: "Memory jar set", price: 18, tags: ["meaningful", "high", "home"], why: "Capture moments throughout the year." },
         { name: "Custom name print", price: 24, tags: ["meaningful", "high", "home"], why: "Personal wall art with meaning." },
         { name: "Experience voucher", price: 50, tags: ["experiences", "high"], why: "Create a shared memory together." }
+      ]
+    },
+    {
+      id: "mothers-day",
+      label: "Mother's Day",
+      description: "Thoughtful, personal, and easy-to-buy gifts for mum.",
+      styles: DEFAULT_STYLES,
+      gifts: [
+        { name: "Luxury pamper gift set", price: 28, tags: ["style", "med", "home"], why: "A relaxing treat she can enjoy right away." },
+        { name: "Personalised jewellery", price: 45, tags: ["meaningful", "high", "style"], why: "A keepsake that feels personal." },
+        { name: "Tea or coffee sampler", price: 18, tags: ["coffee", "thoughtful"], why: "A thoughtful upgrade to her routine." },
+        { name: "Scented candle gift", price: 22, tags: ["home", "med"], why: "Instant cosy atmosphere." },
+        { name: "Photo book or frame", price: 24, tags: ["meaningful", "high", "home"], why: "A memory she can revisit." },
+        { name: "Experience voucher", price: 50, tags: ["experiences", "high"], why: "Time together beats more stuff." }
       ]
     },
     {
