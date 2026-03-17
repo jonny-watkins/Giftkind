@@ -72,6 +72,14 @@
         link_domain: url.hostname,
         affiliate_tag: url.searchParams.get("tag") || ""
       });
+
+      safeTrack("gift_click", {
+        ...pageParams,
+        product: link.dataset.asin || "",
+        price_bracket: link.dataset.priceBracket || "",
+        category: link.dataset.category || "",
+        gift_name: link.dataset.gift || ""
+      });
     });
   };
 

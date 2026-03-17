@@ -82,6 +82,7 @@ const AMAZON_TAG = "giftkind-21";
 const AMAZON_MAX_LINKS = 7;
 const AMAZON_EXACT_LINKS_ONLY = true;
 const AMAZON_LINKS = typeof window !== "undefined" && window.AMAZON_LINKS ? window.AMAZON_LINKS : {};
+const PAGE_CATEGORY = (typeof document !== "undefined" && document.body && document.body.dataset.category) || "mothers-day";
 const UNLOCK_KEY = "mdgf_unlocked";
 const MAX_RESULTS = 8;
 const LOCKED_RESULTS = 3;
@@ -271,8 +272,22 @@ function ensureAmazonTag(url) {
 function asinsToLinks(asins, giftName) {
   return asins.slice(0, AMAZON_MAX_LINKS).map((asin, index) => ({
     label: `${giftName} option ${index + 1}`,
-    url: `https://www.amazon.co.uk/dp/${asin}`
+    url: `https://www.amazon.co.uk/dp/${asin}`,
+    asin
   }));
+}
+
+function extractAsin(url) {
+  if (!url) return "";
+  const match = url.match(/\/dp\/([A-Z0-9]{10})/i) || url.match(/\/gp\/product\/([A-Z0-9]{10})/i);
+  return match ? match[1].toUpperCase() : "";
+}
+
+function priceBracketFromValue(value) {
+  if (value <= 15) return "under15";
+  if (value <= 25) return "under25";
+  if (value <= 50) return "under50";
+  return "under100";
 }
 
 function buildSearchTerms(gift) {
@@ -362,10 +377,15 @@ function buildResultCard(gift, delay, locked) {
     .join("");
   const links = buildAffiliateLinks(gift);
   const safeGift = escapeHtml(gift.name);
+  const priceBracket = priceBracketFromValue(gift.price);
   const linkHtml = links
     .map((link, index) => {
       const safeLabel = escapeHtml(link.label || gift.name);
-      return `<a href="${link.url}" target="_blank" rel="sponsored nofollow noopener" data-affiliate-link="amazon" data-gift="${safeGift}" data-position="${index + 1}">${safeLabel}</a>`;
+      const asin = link.asin || extractAsin(link.url);
+      const asinAttr = asin ? ` data-asin="${asin}"` : "";
+      const categoryAttr = PAGE_CATEGORY ? ` data-category="${PAGE_CATEGORY}"` : "";
+      const priceAttr = priceBracket ? ` data-price-bracket="${priceBracket}"` : "";
+      return `<a href="${link.url}" target="_blank" rel="sponsored nofollow noopener" data-affiliate-link="amazon" data-gift="${safeGift}" data-position="${index + 1}"${asinAttr}${priceAttr}${categoryAttr}>${safeLabel}</a>`;
     })
     .join("");
   const linksBlock = links.length
